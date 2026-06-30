@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Максим Фишер — fullstack-разработчик. Портфолио, стек, опыт и контакты." />
+  <title>Максим Фишер — Fullstack-разработчик</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon_mf.ico" type="image/x-icon">
+</head>
+<body class="page">
+  <header class="header">
+    <div class="container header__container">
+      <a class="header__brand" href="#hero">MF</a>
+
+      <button class="header__burger burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </button>
+
+      <nav class="header__nav nav" aria-label="Основная навигация">
+        <a class="nav__link" href="#about">Обо мне</a>
+        <a class="nav__link" href="#skills">Навыки</a>
+        <a class="nav__link" href="#experience">Опыт</a>
+        <a class="nav__link" href="#projects">Проекты</a>
+        <a class="nav__link" href="#contact">Контакты</a>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container mobile-menu__inner">
+        <a class="mobile-menu__link" href="#about">Обо мне</a>
+        <a class="mobile-menu__link" href="#skills">Навыки</a>
+        <a class="mobile-menu__link" href="#experience">Опыт</a>
+        <a class="mobile-menu__link" href="#projects">Проекты</a>
+        <a class="mobile-menu__link" href="#contact">Контакты</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__container">
+        <div class="hero__content">
+          <div class="hero__eyebrow">Fullstack-разработчик · Тюмень</div>
+          <h1 class="hero__title">Максим Фишер</h1>
+          <p class="hero__text">
+            Разрабатываю современные сайты и веб-приложения: от адаптивного интерфейса до серверной логики,
+            работы с базами данных и интеграции функционала. Работаю с frontend и backend частью проектов,
+            поддержкой действующих сайтов и доработкой готовых решений.
+          </p>
+
+          <div class="hero__actions">
+            <a class="button button--primary" href="#projects">Смотреть проекты</a>
+            <a class="button button--secondary" href="resumehhrupdf.pdf" target="_blank" rel="noopener noreferrer">Открыть PDF-резюме</a>
+          </div>
+
+          <ul class="hero__meta meta-list">
+            <li class="meta-list__item">
+              <span class="meta-list__label">Формат работы</span>
+              <span class="meta-list__value">Удалённо / гибрид</span>
+            </li>
+            <li class="meta-list__item">
+              <span class="meta-list__label">Стек</span>
+              <span class="meta-list__value">HTML · CSS · JavaScript · PHP · MySQL · React · Laravel · WordPress · 1C-Битрикс</span>
+            </li>
+            <li class="meta-list__item">
+              <span class="meta-list__label">Ожидания</span>
+              <span class="meta-list__value">Fullstack-разработка, поддержка и развитие веб-проектов в продуктовой или студийной команде</span>
+            </li>
+          </ul>
+        </div>
+
+        <aside class="hero__card profile-card">
+          <div class="profile-card__avatar">MF</div>
+          <h2 class="profile-card__name">Максим Фишер</h2>
+          <p class="profile-card__role">Fullstack-разработчик</p>
+          <ul class="profile-card__list">
+            <li class="profile-card__item">20 лет</li>
+            <li class="profile-card__item">Тюмень</li>
+            <li class="profile-card__item">Полная занятость / проектная работа</li>
+            <li class="profile-card__item">Быстро включаюсь в задачи и аккуратно работаю как с интерфейсами, так и с серверной частью</li>
+          </ul>
+          <a class="profile-card__link" href="#contact">Связаться</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Обо мне</span>
+          <h2 class="section-heading__title">Fullstack-разработчик с опытом работы над интерфейсами, backend-логикой и CMS</h2>
+        </div>
+
+        <div class="about">
+          <div class="about__content card">
+            <p class="about__text">
+              Занимаюсь fullstack-разработкой: умею собирать адаптивные интерфейсы, переносить макеты в код,
+              дорабатывать frontend-часть, подключать серверную логику, работать с базами данных и
+              поддерживать действующие проекты. В работе уделяю внимание структуре проекта, читаемости кода,
+              стабильности функционала и корректной работе сайта на разных устройствах.
+            </p>
+            <p class="about__text">
+              Есть опыт работы в студии веб-разработки и коммерческих проектах: создание и поддержка сайтов,
+              исправление багов, тестирование, интеграция функционала, работа с WordPress, Laravel и 1C-Битрикс.
+            </p>
+          </div>
+
+          <div class="about__facts card-grid">
+            <article class="fact-card">
+              <span class="fact-card__value">Frontend</span>
+              <p class="fact-card__text">Адаптивная вёрстка, UI, семантика, БЭМ, формы, интерактивные блоки и клиентская логика.</p>
+            </article>
+            <article class="fact-card">
+              <span class="fact-card__value">Backend</span>
+              <p class="fact-card__text">PHP, MySQL, обработка данных, серверная логика, интеграция функционала и доработка сайтов.</p>
+            </article>
+            <article class="fact-card">
+              <span class="fact-card__value">CMS / Frameworks</span>
+              <p class="fact-card__text">WordPress, Laravel, 1C-Битрикс, поддержка существующих решений и разработка нового функционала.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Навыки</span>
+          <h2 class="section-heading__title">Технологии и инструменты</h2>
+        </div>
+
+        <div class="skills">
+          <article class="card skills__block">
+            <h3 class="card__title">Основной стек</h3>
+            <div class="tag-list">
+              <span class="tag-list__item">HTML</span>
+              <span class="tag-list__item">CSS</span>
+              <span class="tag-list__item">JavaScript</span>
+              <span class="tag-list__item">TypeScript</span>
+              <span class="tag-list__item">jQuery</span>
+              <span class="tag-list__item">React</span>
+              <span class="tag-list__item">Bootstrap</span>
+              <span class="tag-list__item">Tailwind CSS</span>
+              <span class="tag-list__item">PHP</span>
+              <span class="tag-list__item">Laravel</span>
+              <span class="tag-list__item">WordPress</span>
+              <span class="tag-list__item">1C-Битрикс</span>
+              <span class="tag-list__item">MySQL</span>
+              <span class="tag-list__item">phpMyAdmin</span>
+              <span class="tag-list__item">Node.js</span>
+              <span class="tag-list__item">REST API</span>
+              <span class="tag-list__item">GitHub</span>
+              <span class="tag-list__item">Figma</span>
+              <span class="tag-list__item">Адаптивная вёрстка</span>
+              <span class="tag-list__item">БЭМ</span>
+              <span class="tag-list__item">DOM</span>
+              <span class="tag-list__item">AJAX</span>
+              <span class="tag-list__item">JSON</span>
+            </div>
+          </article>
+
+          <article class="card skills__block">
+            <h3 class="card__title">CMS и фреймворки</h3>
+            <div class="tag-list">
+              <span class="tag-list__item">Laravel</span>
+              <span class="tag-list__item">WordPress</span>
+              <span class="tag-list__item">1C-Битрикс</span>
+              <span class="tag-list__item">Node.js</span>
+              <span class="tag-list__item">REST API</span>
+              <span class="tag-list__item">Bitrix API</span>
+              <span class="tag-list__item">phpMyAdmin</span>
+              <span class="tag-list__item">CRUD</span>
+              <span class="tag-list__item">БЭМ</span>
+            </div>
+          </article>
+
+          <article class="card skills__block">
+            <h3 class="card__title">Что делаю в проектах</h3>
+            <ul class="feature-list">
+              <li class="feature-list__item">Верстаю страницы и интерфейсы по макету</li>
+              <li class="feature-list__item">Подключаю формы, кнопки, меню, модальные окна, табы и интерактивные элементы</li>
+              <li class="feature-list__item">Реализую серверную логику и обработку данных</li>
+              <li class="feature-list__item">Работаю с базами данных, CMS и backend-частью проектов</li>
+              <li class="feature-list__item">Дорабатываю существующие сайты и исправляю баги</li>
+              <li class="feature-list__item">Слежу за корректной работой на мобильных устройствах и стабильностью функционала</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Опыт</span>
+          <h2 class="section-heading__title">Практический опыт и образование</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline__item card">
+            <div class="timeline__period">май 2024 — июнь 2024</div>
+            <h3 class="timeline__title">Digital Studio WW · Программист-разработчик</h3>
+            <p class="timeline__text">
+              Занимался созданием и поддержкой веб-страниц, работал с HTML, CSS, JavaScript и базовой backend-логикой,
+              помогал в реализации клиентских проектов, исправлял ошибки, тестировал интерфейсы и участвовал
+              в переносе макетов в код. Работал над доработкой сайтов и поддержкой существующих решений.
+            </p>
+          </article>
+
+          <article class="timeline__item card">
+            <div class="timeline__period">апрель 2025 — август 2025</div>
+            <h3 class="timeline__title">Чипмедиа.ру · Fullstack-разработчик</h3>
+            <p class="timeline__text">
+              Работал в компании fullstack-разработчиком, занимался созданием и доработкой веб-проектов.
+              Участвовал в разработке клиентской части сайтов, работал с HTML, CSS, JavaScript, а также с
+              серверной логикой, базами данных и интеграцией функционала. Решал задачи по вёрстке,
+              адаптации интерфейсов, подключению форм, обработке данных, поддержке проектов и работе с
+              WordPress, Laravel и 1C-Битрикс.
+            </p>
+          </article>
+
+          <article class="timeline__item card">
+            <div class="timeline__period">2025</div>
+            <h3 class="timeline__title">ТТСИиГХ · Информационные системы и программирование</h3>
+            <p class="timeline__text">
+              Среднее специальное образование с уклоном в веб-дизайн и разработку. Во время обучения
+              закреплял навыки frontend и backend-разработки, работы с базами данных и структуры веб-проектов.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Портфолио</span>
+          <h2 class="section-heading__title">Реальные проекты</h2>
+        </div>
+
+        <div class="projects">
+          <article class="project-card project-card--telemed">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Корпоративный сайт</span>
+              <h3 class="project-card__title">Telemedtest</h3>
+              <p class="project-card__text">
+                Сайт для сервиса дистанционных медицинских осмотров: презентация продукта,
+                преимущества, кейсы, формы заявок и контентные блоки для B2B-аудитории.
+                Работа включала доработку интерфейсов, поддержку страниц и развитие функционала.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Landing / corporate</li>
+                <li class="project-card__tag">Формы и CTA</li>
+                <li class="project-card__tag">Frontend + backend</li>
+              </ul>
+              <a class="project-card__link" href="https://telemedtest.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--alpha">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type mt10">Сервисный сайт</span>
+              <h3 class="project-card__title">Alpha Help Truck</h3>
+              <p class="project-card__text">
+                Сайт службы автопомощи с акцентом на быстрый вызов, список услуг, контактные сценарии,
+                мессенджеры и понятную подачу преимуществ сервиса 24/7. В проекте выполнял доработку
+                интерфейсов, форм и общей логики работы сайта.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">UI для услуг</li>
+                <li class="project-card__tag">Интерактивные формы</li>
+                <li class="project-card__tag">Поддержка проекта</li>
+              </ul>
+              <a class="project-card__link" href="https://alphahelptruck.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--realty">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Каталог / сервис недвижимости</span>
+              <h3 class="project-card__title">Недвижимость и цены</h3>
+              <p class="project-card__text">
+                Многостраничный сайт по недвижимости с каталогом объектов, разделами ипотеки,
+                услуг, фильтрами, карточками предложений и сложной контентной структурой.
+                Разработан на базе CMS 1C-Битрикс с использованием базы данных.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Каталог</li>
+                <li class="project-card__tag">Фильтры и разделы</li>
+                <li class="project-card__tag">Сложная структура</li>
+              </ul>
+              <a class="project-card__link" href="https://nedvizhimosticeny.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact card">
+          <div class="contact__content">
+            <span class="section-heading__eyebrow">Контакты</span>
+            <h2 class="contact__title">Готов обсудить работу над проектом или постоянную позицию</h2>
+            <p class="contact__text">
+              Открыт к предложениям по fullstack-разработке, доработке сайтов, backend/frontend задачам
+              и работе в команде. Удобнее всего связаться по телефону или электронной почте.
+            </p>
+          </div>
+
+          <ul class="contact__list">
+            <li class="contact__item">
+              <span class="contact__label">Телефон</span>
+              <a class="contact__value" href="tel:+79995477531">+7 999 547-75-31</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__label">Email</span>
+              <a class="contact__value" href="mailto:Makasya72@mail.ru">Makasya72@mail.ru</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__label">Город</span>
+              <span class="contact__value">Тюмень</span>
+            </li>
+            <li class="contact__item">
+              <span class="contact__label">Режим работы</span>
+              <span class="contact__value">Удалённо / гибрид / проектная занятость</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <p class="footer__text">© 2026 Максим Фишер — Fullstack-разработчик</p>
+      <a class="footer__link" href="#hero">Наверх</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
