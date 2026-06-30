@@ -733,3 +733,87 @@ textarea {
     flex-direction: column;
   }
 }
+
+.nav__link--active {
+  color: var(--text);
+}
+
+.section-heading--split {
+  max-width: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.section-heading__button {
+  flex-shrink: 0;
+  margin-bottom: 6px;
+}
+
+.works-hero {
+  padding: 88px 0 28px;
+}
+
+.works-hero__content {
+  max-width: 900px;
+}
+
+.projects--all {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.projects--all .project-card {
+  min-height: 480px;
+}
+
+.project-card--gym {
+  background:
+    linear-gradient(135deg, rgba(30, 130, 82, 0.78), rgba(28, 69, 119, 0.52)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.17), transparent 28%),
+    #0e241b;
+}
+
+.project-card--avettura {
+  background:
+    linear-gradient(135deg, rgba(67, 151, 147, 0.78), rgba(62, 93, 160, 0.48)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 28%),
+    #10202c;
+}
+
+.project-card--universe {
+  background:
+    linear-gradient(135deg, rgba(81, 73, 184, 0.78), rgba(25, 128, 169, 0.45)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 28%),
+    #111735;
+}
+
+.project-card--proteh {
+  background:
+    linear-gradient(135deg, rgba(181, 93, 38, 0.78), rgba(84, 90, 100, 0.58)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 28%),
+    #241b15;
+}
+
+.project-card--vostorg {
+  background:
+    linear-gradient(135deg, rgba(93, 50, 158, 0.8), rgba(32, 35, 66, 0.62)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 28%),
+    #141227;
+}
+
+@media (max-width: 820px) {
+  .section-heading--split {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-heading__button {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .works-hero {
+    padding-top: 56px;
+  }
+}

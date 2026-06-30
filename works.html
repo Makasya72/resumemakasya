@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Все работы Максима Фишера — сайты, каталоги, лендинги и корпоративные проекты." />
+  <title>Все работы — Максим Фишер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon_mf.ico" type="image/x-icon">
+</head>
+<body class="page">
+  <header class="header">
+    <div class="container header__container">
+      <a class="header__brand" href="index.html#hero">MF</a>
+
+      <button class="header__burger burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </button>
+
+      <nav class="header__nav nav" aria-label="Основная навигация">
+        <a class="nav__link" href="index.html#about">Обо мне</a>
+        <a class="nav__link" href="index.html#skills">Навыки</a>
+        <a class="nav__link" href="index.html#experience">Опыт</a>
+        <a class="nav__link" href="index.html#projects">Проекты</a>
+        <a class="nav__link nav__link--active" href="works.html">Все работы</a>
+        <a class="nav__link" href="index.html#contact">Контакты</a>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container mobile-menu__inner">
+        <a class="mobile-menu__link" href="index.html#about">Обо мне</a>
+        <a class="mobile-menu__link" href="index.html#skills">Навыки</a>
+        <a class="mobile-menu__link" href="index.html#experience">Опыт</a>
+        <a class="mobile-menu__link" href="index.html#projects">Проекты</a>
+        <a class="mobile-menu__link" href="works.html">Все работы</a>
+        <a class="mobile-menu__link" href="index.html#contact">Контакты</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="works-hero">
+      <div class="container">
+        <div class="hero__content works-hero__content">
+          <span class="hero__eyebrow">Портфолио · Все проекты</span>
+          <h1 class="hero__title">Все работы</h1>
+          <p class="hero__text">
+            Подборка сайтов, над которыми я работал: корпоративные проекты, каталоги, сервисные сайты,
+            лендинги и многостраничные решения с формами, контентными разделами и адаптивными интерфейсами.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="index.html#contact">Обсудить проект</a>
+            <a class="button button--secondary" href="index.html#projects">Вернуться на главную</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="all-projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow">Работы</span>
+          <h2 class="section-heading__title">Сайты и веб-проекты</h2>
+        </div>
+
+        <div class="projects projects--all">
+          <article class="project-card project-card--telemed">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Корпоративный сайт</span>
+              <h3 class="project-card__title">Telemedtest</h3>
+              <p class="project-card__text">
+                Сайт сервиса дистанционных медицинских осмотров для B2B-аудитории: презентация продукта, преимущества, кейсы, формы заявок и контентные блоки. Работа включала доработку интерфейсов, поддержку страниц и развитие функционала.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Landing / corporate</li>
+                <li class="project-card__tag">Формы и CTA</li>
+                <li class="project-card__tag">Frontend + backend</li>
+              </ul>
+              <a class="project-card__link" href="https://telemedtest.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--alpha">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Сервисный сайт</span>
+              <h3 class="project-card__title">Alpha Help Truck</h3>
+              <p class="project-card__text">
+                Сайт службы автопомощи с акцентом на быстрый вызов, список услуг, контактные сценарии, мессенджеры и понятную подачу преимуществ сервиса 24/7. Выполнял доработку интерфейсов, форм и общей логики работы сайта.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">UI для услуг</li>
+                <li class="project-card__tag">Интерактивные формы</li>
+                <li class="project-card__tag">Поддержка проекта</li>
+              </ul>
+              <a class="project-card__link" href="https://alphahelptruck.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--realty">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Каталог / сервис недвижимости</span>
+              <h3 class="project-card__title">Недвижимость и цены</h3>
+              <p class="project-card__text">
+                Многостраничный сайт по недвижимости с каталогом объектов, разделами ипотеки и услуг, фильтрами, карточками предложений и сложной контентной структурой. Проект реализован на базе CMS 1C-Битрикс с использованием базы данных.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Каталог</li>
+                <li class="project-card__tag">Фильтры и разделы</li>
+                <li class="project-card__tag">1C-Битрикс</li>
+              </ul>
+              <a class="project-card__link" href="https://nedvizhimosticeny.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--gym">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Сайт фитнес-клуба</span>
+              <h3 class="project-card__title">50 GYM Moscow</h3>
+              <p class="project-card__text">
+                Сайт фитнес-клуба с бассейном, расписанием, услугами, разделами о клубе, команде, картах и контактных формах. В проекте важны удобная структура услуг, адаптивность, навигация и быстрые сценарии записи для посетителей.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Услуги и расписание</li>
+                <li class="project-card__tag">Формы заявок</li>
+                <li class="project-card__tag">Адаптивная вёрстка</li>
+              </ul>
+              <a class="project-card__link" href="https://50gymmoscow.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--avettura">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Медицинский сайт</span>
+              <h3 class="project-card__title">Аветтура</h3>
+              <p class="project-card__text">
+                Сайт ветеринарной клиники в Москве с презентацией услуг, врачей, отзывов, прайса, полезных материалов и записью на приём. Основной фокус — доверительная подача информации, понятная навигация и удобный путь пользователя к обращению.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Услуги и врачи</li>
+                <li class="project-card__tag">Запись на приём</li>
+                <li class="project-card__tag">Контентные разделы</li>
+              </ul>
+              <a class="project-card__link" href="https://avettura.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--universe">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Образовательный сайт</span>
+              <h3 class="project-card__title">Universe Group</h3>
+              <p class="project-card__text">
+                Сайт компании по поступлению в зарубежные университеты: направления по странам, подбор программ, описание этапов работы, услуг, преимуществ и заявок. В проекте важны многоязычность, структура каталога и удобная подача большого объёма информации.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Каталог программ</li>
+                <li class="project-card__tag">Многоязычность</li>
+                <li class="project-card__tag">Формы заявок</li>
+              </ul>
+              <a class="project-card__link" href="https://universegroup.uz/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--proteh">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Корпоративный каталог</span>
+              <h3 class="project-card__title">ПРОТЕХСТРОЙ</h3>
+              <p class="project-card__text">
+                Сайт завода железобетонных изделий и конструкций с каталогом продукции, разделами по направлениям, карточками товаров, контактами, заявками и коммерческой структурой для B2B-заказчиков.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Каталог продукции</li>
+                <li class="project-card__tag">B2B</li>
+                <li class="project-card__tag">Карточки товаров</li>
+              </ul>
+              <a class="project-card__link" href="https://protehstroi.ru/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--vostorg">
+            <div class="project-card__overlay"></div>
+            <div class="project-card__content">
+              <span class="project-card__type">Каталог / лендинг</span>
+              <h3 class="project-card__title">N₂ Vostorg</h3>
+              <p class="project-card__text">
+                Сайт поставщика пищевой закиси азота с каталогом баллонов, условиями доставки, блоком документов, FAQ, быстрыми CTA и переходом в Telegram. В проекте сделан акцент на понятную структуру, карточки товаров и конверсионные сценарии.
+              </p>
+              <ul class="project-card__tags">
+                <li class="project-card__tag">Каталог товаров</li>
+                <li class="project-card__tag">Доставка</li>
+                <li class="project-card__tag">CTA и Telegram</li>
+              </ul>
+              <a class="project-card__link" href="https://gazvostorg.sbs/" target="_blank" rel="noopener noreferrer">Перейти на сайт</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <p class="footer__text">© 2026 Максим Фишер — Fullstack-разработчик</p>
+      <a class="footer__link" href="index.html#hero">На главную</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
