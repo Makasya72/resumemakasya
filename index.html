@@ -30,6 +30,11 @@
         <a class="nav__link" href="works.html">Все работы</a>
         <a class="nav__link" href="#contact">Контакты</a>
       </nav>
+
+      <button class="lang-toggle" type="button" data-lang-toggle aria-label="Переключить язык">
+        <span class="lang-toggle__option" data-lang-option="ru">RU</span>
+        <span class="lang-toggle__option" data-lang-option="en">EN</span>
+      </button>
     </div>
 
     <div class="mobile-menu" id="mobile-menu">
@@ -40,6 +45,10 @@
         <a class="mobile-menu__link" href="#projects">Проекты</a>
         <a class="mobile-menu__link" href="works.html">Все работы</a>
         <a class="mobile-menu__link" href="#contact">Контакты</a>
+        <button class="lang-toggle lang-toggle--mobile" type="button" data-lang-toggle aria-label="Переключить язык">
+          <span class="lang-toggle__option" data-lang-option="ru">RU</span>
+          <span class="lang-toggle__option" data-lang-option="en">EN</span>
+        </button>
       </div>
     </div>
   </header>
@@ -87,6 +96,26 @@
             <li class="profile-card__item">Полная занятость / проектная работа</li>
             <li class="profile-card__item">Быстро включаюсь в задачи и аккуратно работаю как с интерфейсами, так и с серверной частью</li>
           </ul>
+          <div class="social-links social-links--profile" aria-label="Социальные сети">
+            <a class="social-link" href="https://t.me/Makasya_tmn" target="_blank" rel="noopener noreferrer" aria-label="Telegram Makasya_tmn">
+              <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21.8 4.2 18.5 20c-.2 1-.8 1.2-1.6.8l-4.8-3.6-2.3 2.2c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.3L6.4 13.5 1.6 12c-1-.3-1-1 .2-1.5L20.4 3.3c.9-.3 1.6.2 1.4.9Z" />
+              </svg>
+              <span>Telegram</span>
+            </a>
+            <a class="social-link" href="mailto:makasya72@mail.ru" aria-label="Написать на mail.ru">
+              <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3.2V17h16V8.2l-7.2 5.1a1.4 1.4 0 0 1-1.6 0L4 8.2Zm1.2-1.1L12 12l6.8-4.9H5.2Z" />
+              </svg>
+              <span>Mail.ru</span>
+            </a>
+            <a class="social-link" href="https://github.com/Makasya72" target="_blank" rel="noopener noreferrer" aria-label="GitHub Makasya72">
+              <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
           <a class="profile-card__link" href="#contact">Связаться</a>
         </aside>
       </div>
@@ -139,6 +168,81 @@
         </div>
 
         <div class="skills">
+          <article class="card skills__block skills__block--wide skill-levels">
+            <div class="skill-levels__header">
+              <div>
+                <h3 class="card__title">Уровень владения</h3>
+                <p class="skill-levels__text">Ключевые технологии, с которыми работаю в проектах чаще всего.</p>
+              </div>
+              <span class="skill-levels__badge">83%+</span>
+            </div>
+            <div class="skill-levels__grid">
+              <div class="skill-meter" style="--level: 92%" role="progressbar" aria-label="HTML" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">HTML</span>
+                  <span class="skill-meter__value">92%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 90%" role="progressbar" aria-label="CSS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">CSS</span>
+                  <span class="skill-meter__value">90%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 88%" role="progressbar" aria-label="JavaScript" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">JavaScript</span>
+                  <span class="skill-meter__value">88%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 86%" role="progressbar" aria-label="PHP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="86">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">PHP</span>
+                  <span class="skill-meter__value">86%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 85%" role="progressbar" aria-label="MySQL" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">MySQL</span>
+                  <span class="skill-meter__value">85%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 84%" role="progressbar" aria-label="React" aria-valuemin="0" aria-valuemax="100" aria-valuenow="84">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">React</span>
+                  <span class="skill-meter__value">84%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 83%" role="progressbar" aria-label="Laravel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="83">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">Laravel</span>
+                  <span class="skill-meter__value">83%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 87%" role="progressbar" aria-label="WordPress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="87">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">WordPress</span>
+                  <span class="skill-meter__value">87%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+              <div class="skill-meter" style="--level: 84%" role="progressbar" aria-label="1C-Битрикс" aria-valuemin="0" aria-valuemax="100" aria-valuenow="84">
+                <div class="skill-meter__top">
+                  <span class="skill-meter__name">1C-Битрикс</span>
+                  <span class="skill-meter__value">84%</span>
+                </div>
+                <div class="skill-meter__bar"></div>
+              </div>
+            </div>
+          </article>
+
           <article class="card skills__block">
             <h3 class="card__title">Основной стек</h3>
             <div class="tag-list">
@@ -321,6 +425,26 @@
               Открыт к предложениям по fullstack-разработке, доработке сайтов, backend/frontend задачам
               и работе в команде. Удобнее всего связаться по телефону или электронной почте.
             </p>
+            <div class="social-links social-links--contact" aria-label="Контакты в соцсетях">
+              <a class="social-link" href="https://t.me/Makasya_tmn" target="_blank" rel="noopener noreferrer" aria-label="Telegram Makasya_tmn">
+                <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21.8 4.2 18.5 20c-.2 1-.8 1.2-1.6.8l-4.8-3.6-2.3 2.2c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.3L6.4 13.5 1.6 12c-1-.3-1-1 .2-1.5L20.4 3.3c.9-.3 1.6.2 1.4.9Z" />
+                </svg>
+                <span>Telegram</span>
+              </a>
+              <a class="social-link" href="mailto:makasya72@mail.ru" aria-label="Написать на mail.ru">
+                <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3.2V17h16V8.2l-7.2 5.1a1.4 1.4 0 0 1-1.6 0L4 8.2Zm1.2-1.1L12 12l6.8-4.9H5.2Z" />
+                </svg>
+                <span>Mail.ru</span>
+              </a>
+              <a class="social-link" href="https://github.com/Makasya72" target="_blank" rel="noopener noreferrer" aria-label="GitHub Makasya72">
+                <svg class="social-link__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z" />
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </div>
           </div>
 
           <ul class="contact__list">
@@ -330,7 +454,7 @@
             </li>
             <li class="contact__item">
               <span class="contact__label">Email</span>
-              <a class="contact__value" href="mailto:Makasya72@mail.ru">Makasya72@mail.ru</a>
+              <a class="contact__value" href="mailto:makasya72@mail.ru">makasya72@mail.ru</a>
             </li>
             <li class="contact__item">
               <span class="contact__label">Город</span>
