@@ -135,7 +135,7 @@ async function loadVisits() {
     return;
   }
 
-  const response = await fetch('/api/admin?action=visits&limit=500', {
+  const response = await fetch('/api/admin?action=visits', {
     headers: {
       Authorization: `Bearer ${token}`
     }

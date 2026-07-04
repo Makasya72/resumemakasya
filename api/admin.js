@@ -1,10 +1,11 @@
 const { createHmac, randomUUID, timingSafeEqual } = require('crypto');
-const { get, put } = require('@vercel/blob');
+const { get, list, put } = require('@vercel/blob');
 
-const MAX_VISITS = 1000;
 const SESSION_TTL = 12 * 60 * 60 * 1000;
-const VISITS_BLOB_PATH = 'analytics/visits.json';
-const WRITE_RETRIES = 3;
+const LEGACY_VISITS_BLOB_PATH = 'analytics/visits.json';
+const VISIT_BLOB_PREFIX = 'analytics/visits/';
+const BLOB_LIST_PAGE_SIZE = 1000;
+const READ_BATCH_SIZE = 25;
 
 const state = globalThis.__portfolioAdminState || {
   visits: []
@@ -146,7 +147,6 @@ function buildVisit(req, body = {}) {
 
 function appendVisit(visit) {
   state.visits.unshift(visit);
-  state.visits = state.visits.slice(0, MAX_VISITS);
   console.info('portfolio_visit', JSON.stringify(visit));
 }
 
@@ -164,87 +164,175 @@ function normalizeVisits(value) {
   }
 
   return value
-    .filter((visit) => visit && typeof visit === 'object')
-    .slice(0, MAX_VISITS);
+    .filter((visit) => visit && typeof visit === 'object');
 }
 
-async function readVisitsFromBlob() {
+function isBlobNotConfigured(error) {
+  return error?.message?.includes('BLOB_READ_WRITE_TOKEN') || error?.message?.includes('No token');
+}
+
+function isBlobNotFound(error) {
+  return error?.status === 404 || error?.message?.includes('not found');
+}
+
+function sortVisits(visits) {
+  return normalizeVisits(visits).sort((left, right) => {
+    const leftTime = Date.parse(left.createdAt || '') || 0;
+    const rightTime = Date.parse(right.createdAt || '') || 0;
+
+    return rightTime - leftTime;
+  });
+}
+
+function getVisitKey(visit) {
+  return visit.id || [visit.createdAt, visit.ip, visit.path, visit.visitorId].filter(Boolean).join('|');
+}
+
+function mergeVisits(...visitGroups) {
+  const seen = new Set();
+  const merged = [];
+
+  for (const visit of sortVisits(visitGroups.flat())) {
+    const key = getVisitKey(visit);
+
+    if (key && seen.has(key)) {
+      continue;
+    }
+
+    if (key) {
+      seen.add(key);
+    }
+
+    merged.push(visit);
+  }
+
+  return merged;
+}
+
+function makeVisitBlobPath(visit) {
+  const timestamp = String(visit.createdAt || new Date().toISOString()).replace(/[^0-9]/g, '') || String(Date.now());
+  const id = String(visit.id || randomUUID()).replace(/[^a-zA-Z0-9_-]/g, '');
+
+  return `${VISIT_BLOB_PREFIX}${timestamp}-${id}.json`;
+}
+
+async function readLegacyVisitsFromBlob() {
   try {
-    const result = await get(VISITS_BLOB_PATH, { access: 'private' });
+    const result = await get(LEGACY_VISITS_BLOB_PATH, { access: 'private' });
 
     if (!result) {
-      return { configured: true, visits: [], etag: null };
+      return [];
     }
 
     const raw = await streamToText(result.stream);
     const parsed = raw ? JSON.parse(raw) : [];
 
-    return {
-      configured: true,
-      visits: normalizeVisits(parsed),
-      etag: result.blob.etag
-    };
+    return normalizeVisits(parsed);
   } catch (error) {
-    if (error?.message?.includes('BLOB_READ_WRITE_TOKEN') || error?.message?.includes('No token')) {
-      return { configured: false, visits: state.visits, etag: null };
+    if (isBlobNotFound(error)) {
+      return [];
     }
 
-    if (error?.status === 404 || error?.message?.includes('not found')) {
-      return { configured: true, visits: [], etag: null };
+    throw error;
+  }
+}
+
+async function listVisitBlobRefs() {
+  const blobs = [];
+  let cursor;
+  let hasMore = false;
+
+  do {
+    const result = await list({
+      prefix: VISIT_BLOB_PREFIX,
+      limit: BLOB_LIST_PAGE_SIZE,
+      cursor
+    });
+
+    blobs.push(...result.blobs);
+    cursor = result.cursor;
+    hasMore = result.hasMore;
+  } while (hasMore);
+
+  return blobs;
+}
+
+async function readVisitFromBlob(pathname) {
+  try {
+    const result = await get(pathname, { access: 'private' });
+
+    if (!result) {
+      return null;
+    }
+
+    const raw = await streamToText(result.stream);
+    const parsed = raw ? JSON.parse(raw) : null;
+
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch (error) {
+    if (!isBlobNotFound(error)) {
+      console.error('Failed to read visit blob', pathname, error);
+    }
+
+    return null;
+  }
+}
+
+async function mapInBatches(items, batchSize, mapper) {
+  const results = [];
+
+  for (let index = 0; index < items.length; index += batchSize) {
+    const batch = items.slice(index, index + batchSize);
+    results.push(...await Promise.all(batch.map(mapper)));
+  }
+
+  return results;
+}
+
+async function readVisitsFromBlob() {
+  try {
+    const [legacyVisits, visitBlobRefs] = await Promise.all([
+      readLegacyVisitsFromBlob(),
+      listVisitBlobRefs()
+    ]);
+    const visitBlobs = await mapInBatches(visitBlobRefs, READ_BATCH_SIZE, (blob) => readVisitFromBlob(blob.pathname));
+    const visits = mergeVisits(visitBlobs, legacyVisits);
+
+    state.visits = visits;
+
+    return {
+      configured: true,
+      visits
+    };
+  } catch (error) {
+    if (isBlobNotConfigured(error)) {
+      return { configured: false, visits: state.visits };
     }
 
     console.error('Failed to read visits from Blob', error);
-    return { configured: false, visits: state.visits, etag: null };
+    return { configured: false, visits: state.visits };
   }
 }
 
-async function writeVisitsToBlob(visits, etag = null) {
-  const options = {
+async function writeVisitToBlob(visit) {
+  await put(makeVisitBlobPath(visit), JSON.stringify(visit), {
     access: 'private',
-    allowOverwrite: true,
     contentType: 'application/json',
     cacheControlMaxAge: 60
-  };
-
-  if (etag) {
-    options.ifMatch = etag;
-  }
-
-  await put(VISITS_BLOB_PATH, JSON.stringify(visits), options);
-}
-
-function isPreconditionFailed(error) {
-  return error?.name === 'BlobPreconditionFailedError' || error?.message?.includes('precondition');
+  });
 }
 
 async function appendVisitPersistently(visit) {
-  for (let attempt = 0; attempt < WRITE_RETRIES; attempt += 1) {
-    const current = await readVisitsFromBlob();
-    const visits = [visit, ...current.visits].slice(0, MAX_VISITS);
-
-    if (!current.configured) {
-      appendVisit(visit);
-      return { stored: false, persistent: false };
-    }
-
-    try {
-      await writeVisitsToBlob(visits, current.etag);
-      state.visits = visits;
-      console.info('portfolio_visit', JSON.stringify(visit));
-      return { stored: true, persistent: true };
-    } catch (error) {
-      if (isPreconditionFailed(error) && attempt < WRITE_RETRIES - 1) {
-        continue;
-      }
-
-      console.error('Failed to persist visit to Blob', error);
-      appendVisit(visit);
-      return { stored: false, persistent: false };
-    }
+  try {
+    await writeVisitToBlob(visit);
+    state.visits = mergeVisits([visit], state.visits);
+    console.info('portfolio_visit', JSON.stringify(visit));
+    return { stored: true, persistent: true };
+  } catch (error) {
+    console.error('Failed to persist visit to Blob', error);
+    appendVisit(visit);
+    return { stored: false, persistent: false };
   }
-
-  appendVisit(visit);
-  return { stored: false, persistent: false };
 }
 
 function countBy(items, getValue) {
@@ -340,10 +428,8 @@ async function handleVisits(req, res) {
     return;
   }
 
-  const query = getQuery(req);
-  const limit = Math.max(1, Math.min(Number.parseInt(query.get('limit') || '300', 10) || 300, MAX_VISITS));
   const source = await readVisitsFromBlob();
-  const visits = source.visits.slice(0, limit);
+  const visits = source.visits;
 
   json(res, 200, {
     ok: true,
