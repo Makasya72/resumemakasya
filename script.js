@@ -26,7 +26,9 @@ const TEXT_TRANSLATIONS = {
   'Контакты': 'Contacts',
   'Fullstack-разработчик · Тюмень': 'Full-stack Developer · Tyumen',
   'Максим Фишер': 'Maksim Fisher',
-  'Разрабатываю современные сайты и веб-приложения: от адаптивного интерфейса до серверной логики, работы с базами данных и интеграции функционала. Работаю с frontend и backend частью проектов, поддержкой действующих сайтов и доработкой готовых решений.': 'I build modern websites and web applications: from responsive interfaces to server-side logic, databases, and feature integrations. I work with both frontend and backend parts of projects, support existing websites, and improve ready-made solutions.',
+  'Fullstack-разработчик, который умеет не только сверстать страницу, но и подключить backend-логику, формы, CMS, базу данных и довести сайт до рабочего состояния.': 'A full-stack developer who can not only build a page, but also connect backend logic, forms, CMS, a database, and bring the website to a working state.',
+  'Беру задачи от понятного UI до доработки существующего проекта: быстро разбираюсь в коде, исправляю баги, подключаю функционал и проверяю результат на реальных устройствах.': 'I handle tasks from clear UI to improving existing projects: I quickly understand code, fix bugs, connect functionality, and verify the result on real devices.',
+  'Hire me / Связаться': 'Hire me / Contact',
   'Смотреть проекты': 'View Projects',
   'Открыть PDF-резюме': 'Open PDF Resume',
   'Формат работы': 'Work Format',
@@ -48,6 +50,24 @@ const TEXT_TRANSLATIONS = {
   'PHP, MySQL, обработка данных, серверная логика, интеграция функционала и доработка сайтов.': 'PHP, MySQL, data processing, server-side logic, feature integration, and website improvements.',
   'CMS / Frameworks': 'CMS / Frameworks',
   'WordPress, Laravel, 1C-Битрикс, поддержка существующих решений и разработка нового функционала.': 'WordPress, Laravel, 1C-Bitrix, support for existing solutions, and development of new functionality.',
+  'Польза для команды': 'Team Value',
+  'Что я могу закрыть для компании': 'What I Can Cover for a Company',
+  'Адаптивная вёрстка и UI': 'Responsive Layout and UI',
+  'Собираю страницы по макету, аккуратно работаю с сетками, состояниями, мобильной версией и интерактивными блоками.': 'I build pages from layouts and carefully handle grids, states, mobile versions, and interactive blocks.',
+  'CMS и готовые сайты': 'CMS and Existing Websites',
+  'Дорабатываю WordPress, Laravel и 1C-Битрикс: формы, шаблоны, карточки, каталоги, контентные разделы и мелкие правки без поломки текущей логики.': 'I improve WordPress, Laravel, and 1C-Bitrix: forms, templates, cards, catalogs, content sections, and small fixes without breaking current logic.',
+  'Backend и данные': 'Backend and Data',
+  'Подключаю обработку форм, CRUD-сценарии, работу с MySQL, API-интеграции и серверную логику для пользовательских действий.': 'I connect form processing, CRUD scenarios, MySQL work, API integrations, and server-side logic for user actions.',
+  'Поддержка и исправления': 'Support and Fixes',
+  'Разбираюсь в чужом коде, нахожу причины ошибок, проверяю результат и довожу задачу до состояния, которое можно показывать клиенту.': 'I understand existing code, find root causes of issues, verify the result, and bring tasks to a state that can be shown to a client.',
+  'Рабочий подход': 'Work Approach',
+  'Почему со мной удобно работать': 'Why It Is Easy to Work with Me',
+  'Быстро вхожу в проект': 'I Quickly Get into Projects',
+  'Сначала смотрю структуру, активные файлы и текущую логику, чтобы не ломать уже работающие части сайта.': 'I first inspect the structure, active files, and current logic so I do not break working parts of the website.',
+  'Думаю о результате': 'I Focus on the Result',
+  'Не останавливаюсь на “код написан”: проверяю страницу, форму, мобильную версию и реальные пользовательские сценарии.': 'I do not stop at “the code is written”: I check the page, form, mobile version, and real user scenarios.',
+  'Аккуратно работаю с правками': 'I Keep Changes Careful',
+  'Держу изменения точечными, не переписываю лишнее и учитываю существующий стиль проекта.': 'I keep changes focused, avoid rewriting unnecessary parts, and follow the existing project style.',
   'Технологии и инструменты': 'Technologies and Tools',
   'Уровень владения': 'Skill Level',
   'Ключевые технологии, с которыми работаю в проектах чаще всего.': 'Key technologies I use most often in projects.',
@@ -300,13 +320,13 @@ function trackVisit() {
   const body = JSON.stringify(payload);
 
   if (navigator.sendBeacon) {
-    const sent = navigator.sendBeacon('/api/visit', new Blob([body], { type: 'application/json' }));
+    const sent = navigator.sendBeacon('/api/admin?action=visit', new Blob([body], { type: 'application/json' }));
     if (sent) {
       return;
     }
   }
 
-  fetch('/api/visit', {
+  fetch('/api/admin?action=visit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body,

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Админка — Посещения сайта</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon_mf.ico" type="image/x-icon">
+</head>
+<body class="page admin-page">
+  <main class="admin-shell">
+    <section class="admin-login card" data-admin-login>
+      <a class="header__brand admin-login__brand" href="index.html">MF</a>
+      <span class="section-heading__eyebrow">Админка</span>
+      <h1 class="admin-login__title">Посещения сайта</h1>
+      <p class="admin-login__text">Войдите, чтобы увидеть таблицу последних визитов.</p>
+
+      <form class="admin-form" data-admin-form>
+        <label class="admin-field">
+          <span>Логин</span>
+          <input class="admin-input" type="text" name="username" autocomplete="username" required />
+        </label>
+        <label class="admin-field">
+          <span>Пароль</span>
+          <input class="admin-input" type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button class="button button--primary admin-form__button" type="submit">Войти</button>
+        <p class="admin-message" data-admin-message></p>
+      </form>
+    </section>
+
+    <section class="admin-dashboard" data-admin-dashboard hidden>
+      <div class="admin-dashboard__top">
+        <div>
+          <span class="section-heading__eyebrow">Аналитика</span>
+          <h1 class="admin-dashboard__title">Кто заходил на сайт</h1>
+        </div>
+        <div class="admin-dashboard__actions">
+          <button class="button button--secondary" type="button" data-admin-refresh>Обновить</button>
+          <button class="button button--secondary" type="button" data-admin-logout>Выйти</button>
+          <a class="button button--primary" href="index.html#contact">На сайт</a>
+        </div>
+      </div>
+
+      <div class="admin-note">
+        Данные хранятся в простом runtime-буфере Vercel и могут очищаться после перезапуска функции. Для постоянной истории позже нужна база данных.
+      </div>
+
+      <div class="admin-stats" data-admin-stats></div>
+
+      <div class="admin-table-wrap card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Дата</th>
+              <th>IP</th>
+              <th>Страна / город</th>
+              <th>Страница</th>
+              <th>Источник</th>
+              <th>Язык</th>
+              <th>Устройство</th>
+            </tr>
+          </thead>
+          <tbody data-admin-rows>
+            <tr>
+              <td colspan="7">Данных пока нет.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
