@@ -5,6 +5,7 @@ const form = document.querySelector('[data-admin-form]');
 const message = document.querySelector('[data-admin-message]');
 const rows = document.querySelector('[data-admin-rows]');
 const stats = document.querySelector('[data-admin-stats]');
+const note = document.querySelector('[data-admin-note]');
 const refreshButton = document.querySelector('[data-admin-refresh]');
 const logoutButton = document.querySelector('[data-admin-logout]');
 
@@ -150,6 +151,11 @@ async function loadVisits() {
   }
 
   showDashboard();
+  if (note) {
+    note.textContent = data.persistentStorage
+      ? 'Данные сохраняются в постоянное private-хранилище Vercel Blob и остаются доступны после перезапуска функций.'
+      : 'Хранилище временно недоступно, поэтому данные показываются из runtime-буфера.';
+  }
   renderStats(data.summary);
   renderRows(data.visits);
 }

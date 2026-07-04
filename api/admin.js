@@ -1,7 +1,10 @@
 const { createHmac, randomUUID, timingSafeEqual } = require('crypto');
+const { get, put } = require('@vercel/blob');
 
 const MAX_VISITS = 1000;
 const SESSION_TTL = 12 * 60 * 60 * 1000;
+const VISITS_BLOB_PATH = 'analytics/visits.json';
+const WRITE_RETRIES = 3;
 
 const state = globalThis.__portfolioAdminState || {
   visits: []
@@ -147,6 +150,103 @@ function appendVisit(visit) {
   console.info('portfolio_visit', JSON.stringify(visit));
 }
 
+async function streamToText(stream) {
+  if (!stream) {
+    return '';
+  }
+
+  return new Response(stream).text();
+}
+
+function normalizeVisits(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .filter((visit) => visit && typeof visit === 'object')
+    .slice(0, MAX_VISITS);
+}
+
+async function readVisitsFromBlob() {
+  try {
+    const result = await get(VISITS_BLOB_PATH, { access: 'private' });
+
+    if (!result) {
+      return { configured: true, visits: [], etag: null };
+    }
+
+    const raw = await streamToText(result.stream);
+    const parsed = raw ? JSON.parse(raw) : [];
+
+    return {
+      configured: true,
+      visits: normalizeVisits(parsed),
+      etag: result.blob.etag
+    };
+  } catch (error) {
+    if (error?.message?.includes('BLOB_READ_WRITE_TOKEN') || error?.message?.includes('No token')) {
+      return { configured: false, visits: state.visits, etag: null };
+    }
+
+    if (error?.status === 404 || error?.message?.includes('not found')) {
+      return { configured: true, visits: [], etag: null };
+    }
+
+    console.error('Failed to read visits from Blob', error);
+    return { configured: false, visits: state.visits, etag: null };
+  }
+}
+
+async function writeVisitsToBlob(visits, etag = null) {
+  const options = {
+    access: 'private',
+    allowOverwrite: true,
+    contentType: 'application/json',
+    cacheControlMaxAge: 60
+  };
+
+  if (etag) {
+    options.ifMatch = etag;
+  }
+
+  await put(VISITS_BLOB_PATH, JSON.stringify(visits), options);
+}
+
+function isPreconditionFailed(error) {
+  return error?.name === 'BlobPreconditionFailedError' || error?.message?.includes('precondition');
+}
+
+async function appendVisitPersistently(visit) {
+  for (let attempt = 0; attempt < WRITE_RETRIES; attempt += 1) {
+    const current = await readVisitsFromBlob();
+    const visits = [visit, ...current.visits].slice(0, MAX_VISITS);
+
+    if (!current.configured) {
+      appendVisit(visit);
+      return { stored: false, persistent: false };
+    }
+
+    try {
+      await writeVisitsToBlob(visits, current.etag);
+      state.visits = visits;
+      console.info('portfolio_visit', JSON.stringify(visit));
+      return { stored: true, persistent: true };
+    } catch (error) {
+      if (isPreconditionFailed(error) && attempt < WRITE_RETRIES - 1) {
+        continue;
+      }
+
+      console.error('Failed to persist visit to Blob', error);
+      appendVisit(visit);
+      return { stored: false, persistent: false };
+    }
+  }
+
+  appendVisit(visit);
+  return { stored: false, persistent: false };
+}
+
 function countBy(items, getValue) {
   return items.reduce((acc, item) => {
     const value = getValue(item) || 'Unknown';
@@ -199,8 +299,8 @@ async function handleVisit(req, res) {
 
   const body = await readBody(req);
   const visit = buildVisit(req, body);
-  appendVisit(visit);
-  json(res, 200, { ok: true, stored: true });
+  const result = await appendVisitPersistently(visit);
+  json(res, 200, { ok: true, stored: result.stored, persistent: result.persistent });
 }
 
 async function handleLogin(req, res) {
@@ -242,13 +342,15 @@ async function handleVisits(req, res) {
 
   const query = getQuery(req);
   const limit = Math.max(1, Math.min(Number.parseInt(query.get('limit') || '300', 10) || 300, MAX_VISITS));
-  const visits = state.visits.slice(0, limit);
+  const source = await readVisitsFromBlob();
+  const visits = source.visits.slice(0, limit);
 
   json(res, 200, {
     ok: true,
     visits,
     summary: summarizeVisits(visits),
-    volatileStorage: true
+    persistentStorage: source.configured,
+    volatileStorage: !source.configured
   });
 }
 
