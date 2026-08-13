@@ -1768,6 +1768,30 @@ html {
   background: linear-gradient(135deg, rgba(145, 10, 34, 0.84), rgba(23, 23, 23, 0.78)), #231014;
 }
 
+.project-card--svrent {
+  background: linear-gradient(135deg, rgba(23, 23, 23, 0.9), rgba(200, 16, 46, 0.68)), #171717;
+}
+
+.project-card--a2fg {
+  background: linear-gradient(135deg, rgba(72, 92, 33, 0.94), rgba(242, 183, 5, 0.48)), #263015;
+}
+
+.project-card--kladovoy {
+  background: linear-gradient(135deg, rgba(27, 76, 103, 0.94), rgba(200, 16, 46, 0.56)), #112a39;
+}
+
+.project-card--heat {
+  background: linear-gradient(135deg, rgba(183, 59, 18, 0.9), rgba(242, 183, 5, 0.52)), #3a1b0f;
+}
+
+.project-card--metod {
+  background: linear-gradient(135deg, rgba(23, 23, 23, 0.9), rgba(139, 16, 37, 0.7)), #161616;
+}
+
+.project-card--miele {
+  background: linear-gradient(135deg, rgba(91, 8, 22, 0.94), rgba(23, 23, 23, 0.74)), #25090e;
+}
+
 .hire-cta {
   color: #fff;
   border: 2px solid transparent;
