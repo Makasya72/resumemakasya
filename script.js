@@ -17,7 +17,7 @@ if (burgerButton && mobileMenu) {
 }
 
 const TEXT_TRANSLATIONS = {
-  'Максим Фишер — Fullstack-разработчик': 'Maksim Fisher - Full-stack Developer',
+  'Фишер Максим — Fullstack-разработчик': 'Maksim Fisher - Full-stack Developer',
   'Обо мне': 'About',
   'Навыки': 'Skills',
   'Опыт': 'Experience',
@@ -25,7 +25,7 @@ const TEXT_TRANSLATIONS = {
   'Все работы': 'All Work',
   'Контакты': 'Contacts',
   'Fullstack-разработчик · Тюмень': 'Full-stack Developer · Tyumen',
-  'Максим Фишер': 'Maksim Fisher',
+  'Фишер Максим': 'Maksim Fisher',
   'Fullstack-разработчик, который умеет не только сверстать страницу, но и подключить backend-логику, формы, CMS, базу данных и довести сайт до рабочего состояния.': 'A full-stack developer who can not only build a page, but also connect backend logic, forms, CMS, a database, and bring the website to a working state.',
   'Беру задачи от понятного UI до доработки существующего проекта: быстро разбираюсь в коде, исправляю баги, подключаю функционал и проверяю результат на реальных устройствах.': 'I handle tasks from clear UI to improving existing projects: I quickly understand code, fix bugs, connect functionality, and verify the result on real devices.',
   'Hire me / Связаться': 'Hire me / Contact',
@@ -116,9 +116,9 @@ const TEXT_TRANSLATIONS = {
   'Город': 'City',
   'Режим работы': 'Work Mode',
   'Удалённо / гибрид / проектная занятость': 'Remote / Hybrid / Project work',
-  '© 2026 Максим Фишер — Fullstack-разработчик': '© 2026 Maksim Fisher - Full-stack Developer',
+  '© 2026 Фишер Максим — Fullstack-разработчик': '© 2026 Maksim Fisher - Full-stack Developer',
   'Наверх': 'Back to Top',
-  'Все работы — Максим Фишер': 'All Work - Maksim Fisher',
+  'Все работы — Фишер Максим': 'All Work - Maksim Fisher',
   'Портфолио · Все проекты': 'Portfolio · All Projects',
   'Подборка сайтов, над которыми я работал: корпоративные проекты, каталоги, сервисные сайты, лендинги и многостраничные решения с формами, контентными разделами и адаптивными интерфейсами.': 'A selection of websites I worked on: corporate projects, catalogs, service websites, landing pages, and multi-page solutions with forms, content sections, and responsive interfaces.',
   'Обсудить проект': 'Discuss a Project',
@@ -167,8 +167,8 @@ const ATTRIBUTE_TRANSLATIONS = {
 };
 
 const META_TRANSLATIONS = {
-  'Максим Фишер — fullstack-разработчик. Портфолио, стек, опыт и контакты.': 'Maksim Fisher - full-stack developer. Portfolio, stack, experience, and contacts.',
-  'Все работы Максима Фишера — сайты, каталоги, лендинги и корпоративные проекты.': 'All work by Maksim Fisher - websites, catalogs, landing pages, and corporate projects.'
+  'Фишер Максим — fullstack-разработчик. Портфолио, стек, опыт и контакты.': 'Maksim Fisher - full-stack developer. Portfolio, stack, experience, and contacts.',
+  'Все работы Фишера Максима — сайты, каталоги, лендинги и корпоративные проекты.': 'All work by Maksim Fisher - websites, catalogs, landing pages, and corporate projects.'
 };
 
 function normalizeText(value) {
