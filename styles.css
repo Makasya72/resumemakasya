@@ -63,6 +63,21 @@ body.preloader-active.preloader-reveal .site-shell {
   transform: translateY(0);
 }
 
+html.preloader-skip body.preloader-active {
+  height: auto;
+  overflow: auto;
+}
+
+html.preloader-skip .site-preloader {
+  display: none;
+}
+
+html.preloader-skip body.preloader-active .site-shell {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .site-preloader {
   position: fixed;
   inset: 0;

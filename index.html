@@ -12,6 +12,22 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <script>
+    (function () {
+      var preloaderKey = 'resumehh-preloader-shown';
+
+      try {
+        window.__skipSitePreloader = window.sessionStorage.getItem(preloaderKey) === '1';
+
+        if (window.__skipSitePreloader) {
+          document.documentElement.classList.add('preloader-skip');
+        } else {
+          window.sessionStorage.setItem(preloaderKey, '1');
+        }
+      } catch (error) {
+        window.__skipSitePreloader = false;
+      }
+    })();
+
     window.__preloaderFallback = window.setTimeout(function () {
       document.body?.classList.remove('preloader-active', 'preloader-reveal');
       document.querySelector('.site-preloader')?.remove();

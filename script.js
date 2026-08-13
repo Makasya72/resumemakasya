@@ -342,16 +342,21 @@ function initPreloader() {
     return;
   }
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const timings = reducedMotion
-    ? { leave: 30, reveal: 40, retract: 50, remove: 90 }
-    : { leave: 2200, reveal: 2320, retract: 2440, remove: 3700 };
-
   const finish = () => {
     window.clearTimeout(window.__preloaderFallback);
     document.body.classList.remove('preloader-active', 'preloader-reveal');
     preloader.remove();
   };
+
+  if (window.__skipSitePreloader) {
+    finish();
+    return;
+  }
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const timings = reducedMotion
+    ? { leave: 30, reveal: 40, retract: 50, remove: 90 }
+    : { leave: 2200, reveal: 2320, retract: 2440, remove: 3700 };
 
   requestAnimationFrame(() => {
     preloader.classList.add('is-entering');
