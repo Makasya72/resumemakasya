@@ -7,11 +7,29 @@
   <title>Максим Фишер — Fullstack-разработчик</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon_mf.ico" type="image/x-icon">
+  <script>
+    window.__preloaderFallback = window.setTimeout(function () {
+      document.body?.classList.remove('preloader-active', 'preloader-reveal');
+      document.querySelector('.site-preloader')?.remove();
+    }, 6500);
+  </script>
 </head>
-<body class="page">
+<body class="page preloader-active">
+  <div class="site-preloader" aria-hidden="true">
+    <div class="site-preloader__brand">
+      <span class="site-preloader__part site-preloader__mark">MF</span>
+      <span class="site-preloader__part site-preloader__name">
+        <strong>Maksim</strong>
+        <span>Fisher</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="site-shell">
   <header class="header">
     <div class="container header__container">
       <a class="header__brand" href="#hero">MF</a>
@@ -538,6 +556,7 @@
       <a class="footer__link" href="#hero">Наверх</a>
     </div>
   </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>

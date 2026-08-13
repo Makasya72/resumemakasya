@@ -334,5 +334,44 @@ function trackVisit() {
   }).catch(() => {});
 }
 
+function initPreloader() {
+  const preloader = document.querySelector('.site-preloader');
+
+  if (!preloader) {
+    document.body.classList.remove('preloader-active');
+    return;
+  }
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const timings = reducedMotion
+    ? { leave: 30, reveal: 40, retract: 50, remove: 90 }
+    : { leave: 2200, reveal: 2320, retract: 2440, remove: 3700 };
+
+  const finish = () => {
+    window.clearTimeout(window.__preloaderFallback);
+    document.body.classList.remove('preloader-active', 'preloader-reveal');
+    preloader.remove();
+  };
+
+  requestAnimationFrame(() => {
+    preloader.classList.add('is-entering');
+  });
+
+  window.setTimeout(() => {
+    preloader.classList.add('is-leaving');
+  }, timings.leave);
+
+  window.setTimeout(() => {
+    document.body.classList.add('preloader-reveal');
+  }, timings.reveal);
+
+  window.setTimeout(() => {
+    preloader.classList.add('is-retracting');
+  }, timings.retract);
+
+  window.setTimeout(finish, timings.remove);
+}
+
+initPreloader();
 initLanguageSwitcher();
 trackVisit();
